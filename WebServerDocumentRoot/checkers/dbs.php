@@ -1,15 +1,16 @@
 <?php
-require_once '../launch.php';
-$API = new API($_GET['host'],null,null,null);
+require_once '../api.php';
+$host = 'http://127.0.0.1:8080';
+$API = new API($host);
+//$API = new API($host,null,null,null);
 
 function DBS($API){
   $_QUERYS = [
-   '-dbnames' => true
+    '-dbnames' => true
   ];
   return $XML = $API->_execute($_QUERYS);
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -17,7 +18,7 @@ function DBS($API){
 </head>
 <body>
 <?=DBS($API) ?>
-<script type="text/javascript">
+<script>
 var rets = document.getElementsByTagName('data');
 for(var i = 0; i < rets.length; i++){rets[i].style.display = 'block';}
  </script>
